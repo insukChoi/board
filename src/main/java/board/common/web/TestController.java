@@ -28,7 +28,7 @@ public class TestController {
         // DB
 
         model.addAttribute("spring","spring");
-        return "home1";
+        return "home";
     }
 
 
