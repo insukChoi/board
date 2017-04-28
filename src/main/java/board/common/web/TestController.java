@@ -13,23 +13,13 @@ public class TestController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
-    @RequestMapping("/")
+    @RequestMapping("/list.do")
     public String Index(Model model) throws Exception
     {
         logger.info("index ....");
-        return "home";
+        return "view/board_list_view";
     }
 
-    @RequestMapping("/main.do")
-    public String Main(Model model) throws Exception
-    {
-        logger.info("main ....");
-
-        // DB
-
-        model.addAttribute("spring","spring");
-        return "home";
-    }
 
 
 }
