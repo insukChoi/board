@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jstl/core_rt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -69,7 +72,7 @@
             <div class="content_wrap">
                 <!-- 타이틀 영역 -->
                 <div class="tit_wrap">
-                    <h1>공지사항</h1>
+                    <h1>게시판</h1>
                 </div>
                 <!-- //타이틀 영역 -->
 
@@ -89,7 +92,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td><div class="t_center">1</div></td>
                                 <td><div><a href="#none">제목 1</a></div></td>
                                 <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
@@ -98,7 +101,19 @@
                                 <td><div class="t_center">2</div></td>
                                 <td><div><a href="#none">제목 2</a></div></td>
                                 <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
-                            </tr>
+                            </tr> -->
+                            
+                             
+                            	<c:forEach items= "${result}" var="list">
+                            	
+                            	<tr>
+	                                <td><div class="t_center">${ list.num }</div></td>
+	                                <td><div><a href="#none">${ list.title } </a></div></td>
+	                                <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
+                           		</tr>
+                            	
+                            	</c:forEach>
+                          
                             </tbody>
                         </table>
                     </div>
