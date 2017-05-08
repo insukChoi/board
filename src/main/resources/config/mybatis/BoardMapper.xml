@@ -7,6 +7,7 @@
 <mapper namespace="board.mapper.BoardMapper">
 
     <resultMap type="Board" id="BoardResultMap">
+        <result property="rowNum"  column="rnum"     />
         <result property="num"     column="NUM"     />
         <result property="userId"  column="USER_ID" />
         <result property="title"   column="TITLE"   />
@@ -17,7 +18,19 @@
 
 
     <select id="getBoards" resultMap="BoardResultMap">
-        SELECT * FROM BOARD
+        SELECT * FROM (
+            SELECT
+                ROWNUM rnum,
+                NUM,
+                USER_ID,
+                TITLE,
+                CONTENT,
+                REGDATE,
+                VIEWCNT
+            FROM BOARD
+            ORDER BY REGDATE DESC
+        ) t
+        WHERE 1=1
     </select>
 
 

@@ -10,6 +10,7 @@ public class Board {
     private String content;
     private String regDate;
     private String viewCnt;
+    private String rowNum;
 
     public String getNum() {
         return num;
@@ -57,6 +58,14 @@ public class Board {
 
     public void setViewCnt(String viewCnt) {
         this.viewCnt = viewCnt;
+    }
+
+    public String getRowNum() {
+        return rowNum;
+    }
+
+    public void setRowNum(String rowNum) {
+        this.rowNum = rowNum;
     }
 }
 

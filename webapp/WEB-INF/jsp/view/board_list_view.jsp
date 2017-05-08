@@ -63,7 +63,7 @@
 
                             	<c:forEach items= "${result}" var="item">
                             	<tr>
-	                                <td><div class="t_center">${ item.num }</div></td>
+	                                <td><div class="t_center">${ item.rowNum }</div></td>
 	                                <td><div><a href="#none">${ item.title } </a></div></td>
                                     <td><div><a href="#none">${ item.content } </a></div></td>
                                     <td><div><a href="#none">${ item.regDate } </a></div></td>
