@@ -65,15 +65,15 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/error404</location>
+        <location>/WEB-INF/jsp/view/404_error_view.jsp</location>
     </error-page>
     <error-page>
         <error-code>403</error-code>
-        <location>/error403</location>
+        <location>/WEB-INF/jsp/view/404_error_view.jsp</location>
     </error-page>
     <error-page>
-        <error-code>503</error-code>
-        <location>/error503</location>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/view/404_error_view.jsp</location>
     </error-page>
 
 

@@ -8,7 +8,7 @@
 
     <resultMap type="Board" id="BoardResultMap">
         <result property="num"     column="NUM"     />
-        <result property="user_id" column="USER_ID" />
+        <result property="userId"  column="USER_ID" />
         <result property="title"   column="TITLE"   />
         <result property="content" column="CONTENT" jdbcType="CLOB" javaType="java.lang.String"/>
         <result property="regDate" column="REGDATE" />
@@ -22,15 +22,15 @@
 
 
     <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
-    <insert id="insertBoard" parameterType="board.pojo.Board" >
+    <insert id="insertBoard" parameterType="board.vo.Board" >
         INSERT INTO BOARD values(board_seq.nextval,#{user_id},#{title},#{content},#{regDate},#{viewCnt})
     </insert>
 
 
     <update id=""></update>
 
-    <delete id="deleteBoard" parameterType="board.pojo.Board">
-        DELTE BOARD WHERE(name=#{num})
+    <delete id="deleteBoard" parameterType="board.vo.Board">
+        DELETE BOARD WHERE(name=#{num})
     </delete>
 
 

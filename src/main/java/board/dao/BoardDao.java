@@ -1,6 +1,6 @@
 package board.dao;
 
-import board.pojo.Board;
+import board.vo.Board;
 
 import java.util.ArrayList;
 

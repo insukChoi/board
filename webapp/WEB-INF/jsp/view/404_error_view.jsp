@@ -44,7 +44,7 @@
                 홈페이지 이용에 불편을 드려 대단히 죄송합니다.
             </div>
             <div class="gray_bx">
-                <strong>고객센터</strong> 1577-8996 (평일 09:00 ~ 18:00)
+                <strong>돌아가기</strong> <a href="/list.do">게시판 목록 보기</a>
             </div>
         </div>
     </div>

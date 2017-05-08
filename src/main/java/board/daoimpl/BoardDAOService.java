@@ -2,7 +2,7 @@ package board.daoimpl;
 
 import board.dao.BoardDao;
 import board.mapper.BoardMapper;
-import board.pojo.Board;
+import board.vo.Board;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by admin on 2017-05-02.
  */
 @Repository
-public class BoardDAOService implements BoardDao {
+public class BoardDaoService implements BoardDao {
 
     @Autowired
     private SqlSession sqlSession;

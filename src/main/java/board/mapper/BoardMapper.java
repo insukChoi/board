@@ -1,6 +1,6 @@
 package board.mapper;
 
-import board.pojo.Board;
+import board.vo.Board;
 
 import java.util.ArrayList;
 

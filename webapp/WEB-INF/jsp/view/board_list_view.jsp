@@ -5,66 +5,26 @@
   Time: 오전 11:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jstl/core_rt" %>
+<%@page contentType="text/html;charset=utf-8" %>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xml:lang="ko">
 <head>
-    <title></title>
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="Pragma" content="No-Cache">
-    <link rel="stylesheet" type="text/css" href="/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/css/content.css">
-    <script type="text/javascript" src="/js/view/board_list.js"></script>
+    <%@include file="/WEB-INF/jsp/inc/inc_board_header.jsp"%>
+    <script type="text/javascript" src="/js/view/board_list.js?<%=verSion%>"></script>
 </head>
 
 <body class="lnb_bg">
 
 <!-- wrap -->
 <div class="wrap">
-    <!-- lnb box -->
-    <div class="lnb_box">
-        <!-- lnb top -->
-        <div class="lnb_top">
-            <!-- user view -->
-            <div class="user_view">
-                <div class="user_r_side">
-                    <p class="icon_user"><strong>홍길동</strong> 님</p>
-                </div>
-            </div>
-            <!-- //user view -->
-        </div>
-        <!-- //lnb top -->
-
-        <!-- lnb_cont -->
-        <div class="lnb_cont">
-            <dl>
-                <dt class="on"><h2><a href="#none">공지사항1</a></h2></dt><!-- 활성화클래스 on -->
-                <dd>
-                    <ul>
-                        <li class="on"><a href="#none">공지사항1-1</a></li><!-- 활성화클래스 on -->
-                        <li><a href="#none">공지사항1-2</a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl>
-                <dt><h2><a href="#none">공지사항2</a></h2></dt>
-                <dd>
-                    <ul>
-                        <li><a href="#none">공지사항2-1</a></li>
-                        <li><a href="#none">공지사항2-2</a></li>
-                        <li><a href="#none">공지사항2-3</a></li>
-                    </ul>
-                </dd>
-            </dl>
-        </div>
-        <!-- //lnb_cont -->
-    </div>
-    <!-- //lnb box -->
-
+    <%@include file="/WEB-INF/jsp/inc/inc_board_left.jsp"%>
+    <form id="frm" method="post">
+        <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 		/>
+    </form>
     <!-- container -->
     <div class="container" >
 
@@ -82,36 +42,34 @@
                         <table summary="">
                             <caption></caption>
                             <colgroup>
-                                <col style="width:50px;"><col ><col style="width:100px;">
+                                <col style="width:50px;">
+                                <col style="width:200px;">
+                                <col style="width:500px;">
+                                <col style="width:170px;">
+                                <col style="width:50px;">
+                                <col style="width:100px;">
                             </colgroup>
                             <thead>
                             <tr>
                                 <th><div class="t_center">No</div></th>
                                 <th><div>제목</div></th>
+                                <th><div>내용</div></th>
+                                <th><div>등록일자</div></th>
+                                <th><div>조회수</div></th>
                                 <th><div class="t_center">첨부파일</div></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <!-- <tr>
-                                <td><div class="t_center">1</div></td>
-                                <td><div><a href="#none">제목 1</a></div></td>
-                                <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="t_center">2</div></td>
-                                <td><div><a href="#none">제목 2</a></div></td>
-                                <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
-                            </tr> -->
-                            
-                             
-                            	<c:forEach items= "${result}" var="list">
-                            	
+                            <tbody id="TABLE_RESULT">
+
+                            	<c:forEach items= "${result}" var="item">
                             	<tr>
-	                                <td><div class="t_center">${ list.num }</div></td>
-	                                <td><div><a href="#none">${ list.title } </a></div></td>
+	                                <td><div class="t_center">${ item.num }</div></td>
+	                                <td><div><a href="#none">${ item.title } </a></div></td>
+                                    <td><div><a href="#none">${ item.content } </a></div></td>
+                                    <td><div><a href="#none">${ item.regDate } </a></div></td>
+                                    <td><div><a href="#none">${ item.viewCnt } </a></div></td>
 	                                <td><div class="t_center"><a href="#none"><img src="/img/btn_addfile.png" alt="첨부파일"></a></div></td>
                            		</tr>
-                            	
                             	</c:forEach>
                           
                             </tbody>
@@ -153,6 +111,6 @@
 
 </div>
 <!-- //wrap -->
-
+<%@include file="/WEB-INF/jsp/inc/inc_board_footer.jsp"%>
 </body>
 </html>

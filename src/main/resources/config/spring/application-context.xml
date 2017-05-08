@@ -5,7 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-
     <bean id="dataSource" class="net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy">
         <constructor-arg ref="dataSourceSpied" />
     </bean>
