@@ -5,9 +5,12 @@
     $(document).ready(function(){
 
         $("#addBoard").on("click", function(e){
-            console.log(1);
-            common.board.info("혜신씨가 해야되요 ~ ");
-            return false;
+            e.preventDefault();
+
+            // 게시글 쓰기 화면으로 이동
+            var boardSubmit = new common.board.BoardSubmit();
+            boardSubmit.setUrl("/newPosting.do");
+            boardSubmit.submit();
         });
     });
 
@@ -21,7 +24,7 @@
         <!-- user view -->
         <div class="user_view">
             <div class="user_r_side">
-                <p class="icon_user"><strong>홍길동</strong> 님</p>
+                <p class="icon_user"><strong>최인석</strong> 님</p>
             </div>
         </div>
         <!-- //user view -->
@@ -29,7 +32,7 @@
     <!-- //lnb top -->
 
     <div class="gohome">
-        <a id="addBoard" href="#none">게시판 등록</a>
+        <a id="addBoard" href="#none">게시글 등록</a>
     </div>
 
     <!-- lnb_cont -->

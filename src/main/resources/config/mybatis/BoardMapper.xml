@@ -17,7 +17,7 @@
     </resultMap>
 
 
-    <select id="getBoards" resultMap="BoardResultMap">
+    <select id="getBoards" parameterType="hashMap" resultMap="BoardResultMap">
         SELECT * FROM (
             SELECT
                 ROWNUM rnum,
@@ -25,26 +25,61 @@
                 USER_ID,
                 TITLE,
                 CONTENT,
-                REGDATE,
+                TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') as REGDATE,
                 VIEWCNT
             FROM BOARD
-            ORDER BY REGDATE DESC
+            ORDER BY NUM DESC
         ) t
         WHERE 1=1
+        <if test="PAGE_NO != null and PAGE_SZ != null">
+            AND rnum BETWEEN #{PAGE_NO} and #{PAGE_SZ}
+        </if>
     </select>
 
 
-    <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
-    <insert id="insertBoard" parameterType="board.vo.Board" >
-        INSERT INTO BOARD values(board_seq.nextval,#{user_id},#{title},#{content},#{regDate},#{viewCnt})
+    <select id="getBoard" parameterType="java.lang.String" resultMap="BoardResultMap">
+        SELECT
+            NUM,
+            USER_ID,
+            TITLE,
+            CONTENT,
+            TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') as REGDATE,
+            VIEWCNT
+        FROM BOARD
+        WHERE 1=1
+		  AND NUM = #{NUM}
+    </select>
+
+    <select id="countPosting"  resultType="int">
+        SELECT
+          COUNT(0) as CNT
+        FROM BOARD
+    </select>
+
+    <insert id="insertBoard" parameterType="hashMap" >
+        INSERT INTO BOARD(NUM,USER_ID,TITLE,CONTENT,REGDATE)
+        values(
+          board_seq.nextval,
+          #{USER_ID, jdbcType=VARCHAR},
+          #{TITLE, jdbcType=VARCHAR},
+          #{CONTENT, jdbcType=CLOB},
+          sysdate
+        )
     </insert>
 
 
     <update id=""></update>
 
     <delete id="deleteBoard" parameterType="board.vo.Board">
-        DELETE BOARD WHERE(name=#{num})
+        DELETE BOARD WHERE 1=1 AND NUM = #{NUM}
     </delete>
+
+    <update id="incleaseViewCnt" parameterType="java.lang.String">
+      UPDATE BOARD
+        SET VIEWCNT = (SELECT NVL(VIEWCNT,0)+1 FROM BOARD WHERE 1=1 AND NUM = #{NUM})
+        WHERE 1=1
+            AND NUM = #{NUM}
+    </update>
 
 
 

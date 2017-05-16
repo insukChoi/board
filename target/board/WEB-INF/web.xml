@@ -73,7 +73,7 @@
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/WEB-INF/jsp/view/404_error_view.jsp</location>
+        <location>/WEB-INF/jsp/view/500_error_view.jsp</location>
     </error-page>
 
 

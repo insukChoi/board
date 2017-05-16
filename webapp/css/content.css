@@ -3,6 +3,8 @@
 
 body.lnb_bg{background:url(../img/body_lnb_bg.gif) repeat-y;}
 
+.tbl_input.mgb11 a:hover{text-decoration: underline;}
+
 /* wrap */
 .wrap{margin:0;padding:0;min-width:1200px;}
 

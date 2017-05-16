@@ -34,7 +34,7 @@
         <div class="membinfo_wrap mgb10">
 
             <!-- 사진,회사명,이름 -->
-            <div class="baseinfo_wrap">
+            <div class="baseinfo_wrap" style="height: 64px;">
                 <!-- 사용자사진 -->
                 <div class="photo_box">
                     <div class="photo_box_fix">

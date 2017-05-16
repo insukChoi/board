@@ -6,6 +6,7 @@ var _board = function() {
     this.afterOnload		= [];
     this.beforeOnload		= [];
     this.onload				= false;
+    this.msgFn				= function(code) {return code;};
 };
 _board.instance						= new _board();
 _board.getInstance					= function() 			{ return _board.instance; };
@@ -34,6 +35,10 @@ _board.prototype.isOnload				= function(b) 				{
     }
     return b;
 };
+_board.prototype.getMsg			= function(dat)			{ return this.msgFn(dat); 	};
+
+
+var board = _board.getInstance();
 
 
 (function(){

@@ -10,9 +10,6 @@
 <!DOCTYPE html>
 <html lang="ko" xml:lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="No-Cache">
-    <meta http-equiv="Pragma" content="No-Cache">
     <%@include file="/WEB-INF/jsp/inc/inc_board_header.jsp"%>
     <script type="text/javascript" src="/js/view/board_list.js?<%=verSion%>"></script>
 </head>
@@ -23,7 +20,9 @@
 <div class="wrap">
     <%@include file="/WEB-INF/jsp/inc/inc_board_left.jsp"%>
     <form id="frm" method="post">
-        <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 		/>
+        <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 		                        />   <!-- Temp 게시글 시퀀스 번호    -->
+        <input type="hidden" id="PROCESS_CODE" 	name="PROCESS_CODE" value="${PROCESS_CODE}"		/>   <!-- C: 등록, U: 수정, D: 삭제  -->
+        <input type="hidden" id="CNT" 	        name="CNT"          value="${count}"		    />   <!-- 총 카운트                  -->
     </form>
     <!-- container -->
     <div class="container" >
@@ -45,7 +44,7 @@
                                 <col style="width:50px;">
                                 <col style="width:200px;">
                                 <col style="width:500px;">
-                                <col style="width:170px;">
+                                <col style="width:180px;">
                                 <col style="width:50px;">
                                 <col style="width:100px;">
                             </colgroup>
@@ -62,7 +61,7 @@
                             <tbody id="TABLE_RESULT">
 
                             	<c:forEach items= "${result}" var="item">
-                            	<tr>
+                            	<tr boardNum="${ item.num }">
 	                                <td><div class="t_center">${ item.rowNum }</div></td>
 	                                <td><div><a href="#none">${ item.title } </a></div></td>
                                     <td><div><a href="#none">${ item.content } </a></div></td>
@@ -81,24 +80,24 @@
                 <!-- Paging wrap -->
                 <div class="paging_wrap">
                     <div class="combo_wrap">
-                        <div class="combo_style">
-                            <a href="#none" class="btn_style btn_combo_down"><span>15</span></a>
-                            <ul style="display:;">
-                                <li><a href="#none">15개</a></li>
-                                <li><a href="#none">20개</a></li>
-                                <li><a href="#none">30개</a></li>
-                                <li><a href="#none">50개</a></li>
+                        <div class="combo_style" id="paging_size">
+                            <a href="#none" class="btn_style btn_combo_down" id="PAGE_SZ"><span>15</span></a>
+                            <ul style="display:none;">
+                                <li><a href="#none">15</a></li>
+                                <li><a href="#none">20</a></li>
+                                <li><a href="#none">30</a></li>
+                                <li><a href="#none">50</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- pagination -->
-                    <div class="paging"><!-- 비활성상태는 on class 제거 -->
-                        <a href="#none" class="btn_pag_cntr first"><span class="blind">first</span></a><a href="#none" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
+                    <div class="paging" id="CREATE_PG_LINK"><!-- 비활성상태는 on class 제거 -->
+                        <%--<a href="#none" class="btn_pag_cntr first"><span class="blind">first</span></a><a href="#none" class="btn_pag_cntr prev"><span class="blind">previous</span></a>
 						<span class="pag_num">
 							<a href="#none" class="on">1</a><a href="#none">2</a><a href="#none">3</a><a href="#none">4</a><a href="#none">5</a><a href="#none">6</a><a href="#none">7</a><a href="#none">8</a><a href="#none">9</a><a href="#none">10</a>
 						</span>
-                        <a href="#none" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="#none" class="btn_pag_cntr last on"><span class="blind">last</span></a>
+                        <a href="#none" class="btn_pag_cntr next on"><span class="blind">next</span></a><a href="#none" class="btn_pag_cntr last on"><span class="blind">last</span></a>--%>
                     </div>
                     <!-- //pagination -->
                 </div>

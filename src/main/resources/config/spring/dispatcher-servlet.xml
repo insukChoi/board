@@ -24,6 +24,12 @@
 
     <context:component-scan base-package="board" />
 
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <beans:bean class="common.resolver.CustomMapArgumentResolver"></beans:bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
     <mvc:default-servlet-handler />
 
     <!-- 어노테이션 사용 -->

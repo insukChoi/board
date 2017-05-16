@@ -11,11 +11,15 @@
     String strCurPage = request.getRequestURL().substring(request.getRequestURL().lastIndexOf("/")+1);
 %>
 
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="No-Cache">
+<meta http-equiv="Pragma" content="No-Cache">
 
 <!-- common CSS -->
 <link rel="stylesheet" type="text/css" href="/css/reset.css?<%=verSion%>">
 <link rel="stylesheet" type="text/css" href="/css/content.css?<%=verSion%>">
 <link rel="stylesheet" type="text/css" href="/css/toastr.css?<%=verSion%>">
+<link rel="stylesheet" type="text/css" href="/css/validationEngine.jquery.css?<%=verSion%>">
 
 <!-- board core js -->
 <script type="text/javascript" src="/js/comm/board.core.js?<%=verSion%>"></script>
@@ -39,3 +43,7 @@
 <script type="text/javascript" src="/js/smart/smart.excel.js?<%=verSion%>"></script>
 <script type="text/javascript" src="/js/smart/smart.grid.js?<%=verSion%>"></script>
 <script type="text/javascript" src="/js/smart/smart.popup.js?<%=verSion%>"></script>
+
+<!-- validation Engine Library -->
+<script type="text/javascript" src="/js/validationEngine/validationEngine.js?<%=verSion%>"></script>
+<script type="text/javascript" src="/js/validationEngine/validationEngine-ko.js?<%=verSion%>"></script>
