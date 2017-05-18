@@ -20,7 +20,9 @@
 <div class="wrap">
     <%@include file="/WEB-INF/jsp/inc/inc_board_left.jsp"%>
     <form id="frm" method="post">
-        <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 	value="${BOARD.num}"	/>
+        <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 	 value="${BOARD.num}"	    />
+        <input type="hidden" id="BOARD_TITLE" 	name="BOARD_TITLE" 	 value="${BOARD.title}"	    />
+        <input type="hidden" id="BOARD_CONTENT" name="BOARD_CONTENT" value="${BOARD.content}"	/>
 
     <!-- container -->
     <div class="container" >
@@ -35,10 +37,11 @@
 
                 <!-- 버튼영역 -->
                 <div class="btn_wrap">
-                    <a href="#none" class="btn_sty" id="toList"><span>목록</span></a>
-                    <a href="#none" class="btn_sty" id="modyfyPost"><span>수정</span></a>
-                    <a href="#none" class="btn_sty" id="deletePost"><span>삭제</span></a>
-                    <a href="#none" class="btn_sty"><span>쓰기</span></a>
+                    <a href="#none" class="btn_sty" id="btn_toList"><span>목록</span></a>
+                    <a href="#none" class="btn_sty" id="btn_modyfyPost"><span>수정</span></a>
+                    <a href="#none" class="btn_sty" id="btn_deletePost"><span>삭제</span></a>
+                    <a href="#none" class="btn_sty" id="btn_writePost"><span>쓰기</span></a>
+                    <a href="#none" class="btn_sty" id="btn_cancelPost" style="display: none"><span>취소</span></a>
                 </div>
                 <!-- //버튼영역 -->
 
@@ -50,7 +53,7 @@
                         <tbody>
                         <tr>
                             <th><div>제목</div></th>
-                            <td colspan="3"><div>${BOARD.title}</div></td>
+                            <td colspan="3"><div id="TITL_DIV">${BOARD.title}</div></td>
                         </tr>
                         <tr>
                             <th><div>게시자</div></th>
@@ -64,7 +67,7 @@
                 <!-- //테이블 영역 -->
 
                 <!-- editbox -->
-                <div class="editbox" style="height:150px;">
+                <div class="editbox" style="height:150px;" id="CONT_DIV">
                     ${BOARD.content}
                 </div>
                 <!-- //editbox -->

@@ -21,7 +21,6 @@ public class BoardDaoService implements BoardDao {
 
     @Override
     public Board getBoard(String num) {
-
         Board board = new Board();
 
         BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
@@ -57,8 +56,9 @@ public class BoardDaoService implements BoardDao {
     }
 
     @Override
-    public void updateBoard(String num) {
-
+    public void updateBoard(Map<String, Object> map) {
+        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
+        boardMapper.updateBoard(map);
     }
 
     @Override

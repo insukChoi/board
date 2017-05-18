@@ -7,10 +7,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -26,18 +28,23 @@ public class ListController {
     protected Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("/list.do")
-    public ModelAndView list(CommandMap commandMap, Model model) throws Exception
+    public ModelAndView list(
+            CommandMap commandMap,
+            @CookieValue(value="PAGE_SIZE", defaultValue="15")String cookie) throws Exception
     {
         logger.info("index ....");
 
         // 페이징 처리
-        Object pageNo = commandMap.get("PAGE_NO");
-        Object pageSz = commandMap.get("PAGE_SZ");
+        Object tmpPageNo = commandMap.get("PAGE_NO");
+        Object tmpPageSz = commandMap.get("PAGE_SZ");
+        Object pageNo = tmpPageNo;
+        Object pageSz = tmpPageSz;
         if(pageNo != null && pageSz != null) {
-            pageNo = (Integer.parseInt((String)pageNo) - 1) * Integer.parseInt((String)pageSz);
+            tmpPageSz = Integer.parseInt((String)pageNo) * Integer.parseInt((String)pageSz);
+            tmpPageNo = 1 + ((Integer.parseInt((String)pageNo) - 1) * Integer.parseInt((String)pageSz));
         }
-        commandMap.put("PAGE_NO" , pageNo);
-        commandMap.put("PAGE_SZ" , pageSz);
+        commandMap.put("PAGE_NO" , tmpPageNo == null ? "1"    : tmpPageNo);
+        commandMap.put("PAGE_SZ" , tmpPageSz == null ? cookie : tmpPageSz);
 
         // 게시글 목록 조회
         List<Board> boardList = boardDaoService.getBoards(commandMap.getMap());
@@ -46,8 +53,9 @@ public class ListController {
         int count = boardDaoService.countPosting();
 
         ModelAndView result = new ModelAndView();
-        result.addObject("result", boardList);
-        result.addObject("count", count);
+        result.addObject("RESULT", boardList);
+        result.addObject("COUNT", count);
+        result.addObject("PAGE_NO", pageNo);
         result.setViewName("view/board_list_view");
         return result;
     }
@@ -62,7 +70,7 @@ public class ListController {
     @RequestMapping("/modyPosting.do")
     public ModelAndView modyPosting(@RequestParam(value="BOARD_NO", defaultValue = "") String boardNo) throws Exception
     {
-        logger.info("modyPosting ....");
+        logger.info("modyPosting ...." + boardNo);
 
         // 조회 수 증가
         boardDaoService.incleaseViewCnt(boardNo);

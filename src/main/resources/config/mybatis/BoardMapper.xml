@@ -32,7 +32,7 @@
         ) t
         WHERE 1=1
         <if test="PAGE_NO != null and PAGE_SZ != null">
-            AND rnum BETWEEN #{PAGE_NO} and #{PAGE_SZ}
+            AND rnum BETWEEN #{PAGE_NO}  and #{PAGE_SZ}
         </if>
     </select>
 
@@ -68,7 +68,13 @@
     </insert>
 
 
-    <update id=""></update>
+    <update id="updateBoard" parameterType="hashMap">
+        UPDATE BOARD
+        SET  TITLE = #{TITLE, jdbcType=VARCHAR}
+              ,CONTENT = #{CONTENT, jdbcType=CLOB}
+        WHERE 1=1
+        AND NUM = #{NUM}
+    </update>
 
     <delete id="deleteBoard" parameterType="board.vo.Board">
         DELETE BOARD WHERE 1=1 AND NUM = #{NUM}

@@ -1,6 +1,7 @@
 package board.controller.web;
 
 import board.daoimpl.BoardDaoService;
+import common.comm.CommandMap;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,28 @@ public class ModyfyController {
             RedirectAttributes redirectAttributes) throws Exception
     {
         logger.info("deletePost ....");
+
         ModelAndView result = new ModelAndView("redirect:/list.do");
         boardDaoService.deleteBoard(boardNo);
 
         redirectAttributes.addFlashAttribute("PROCESS_CODE","D");
         return result;
     }
+
+    @RequestMapping("/modify.do")
+    public ModelAndView modify(
+            CommandMap commandMap,
+            RedirectAttributes redirectAttributes) throws Exception
+    {
+        logger.info("modify ....");
+
+        ModelAndView result = new ModelAndView("redirect:/list.do");
+        commandMap.put("NUM",commandMap.get("BOARD_NO"));
+        boardDaoService.updateBoard(commandMap.getMap());
+
+        redirectAttributes.addFlashAttribute("PROCESS_CODE","U");
+        return result;
+    }
+
 
 }

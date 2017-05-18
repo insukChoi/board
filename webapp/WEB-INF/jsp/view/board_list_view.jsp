@@ -22,7 +22,8 @@
     <form id="frm" method="post">
         <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 		                        />   <!-- Temp 게시글 시퀀스 번호    -->
         <input type="hidden" id="PROCESS_CODE" 	name="PROCESS_CODE" value="${PROCESS_CODE}"		/>   <!-- C: 등록, U: 수정, D: 삭제  -->
-        <input type="hidden" id="CNT" 	        name="CNT"          value="${count}"		    />   <!-- 총 카운트                  -->
+        <input type="hidden" id="CNT" 	        name="CNT"          value="${COUNT}"		    />   <!-- 총 카운트                  -->
+        <input type="hidden" id="PAGE_NO" 	    name="PAGE_NO"      value="${PAGE_NO}"		    />   <!-- 현재 페이지 넘버            -->
     </form>
     <!-- container -->
     <div class="container" >
@@ -60,7 +61,7 @@
                             </thead>
                             <tbody id="TABLE_RESULT">
 
-                            	<c:forEach items= "${result}" var="item">
+                            	<c:forEach items= "${RESULT}" var="item">
                             	<tr boardNum="${ item.num }">
 	                                <td><div class="t_center">${ item.rowNum }</div></td>
 	                                <td><div><a href="#none">${ item.title } </a></div></td>

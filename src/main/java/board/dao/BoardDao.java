@@ -18,7 +18,7 @@ public interface BoardDao {
 
     void insertBoard(Map<String, Object> map);
 
-    void updateBoard(String num);
+    void updateBoard(Map<String, Object> map);
 
     void deleteBoard(String num);
 

@@ -16,7 +16,7 @@
 
     <!-- 팝업 헤더 -->
     <div class="pop_header">
-        <h1>Detail of Card User</h1>
+        <h1>유저 상세 정보</h1>
         <a href="#none" class="btn_popclose"><img src="/img/btn_popclose.gif" alt="popup close"></a>
     </div>
     <!-- //팝업 헤더 -->
@@ -100,7 +100,7 @@
 
         <!-- 하단버튼 -->
         <div class="tac">
-            <a href="#none" class="btn_style1" style="cursor: pointer;"><span>Close</span></a>
+            <a href="#none" class="btn_style1" style="cursor: pointer;margin-left:150px;margin-top: 7px;"><span>Close</span></a>
         </div>
         <!-- //하단버튼 -->
 

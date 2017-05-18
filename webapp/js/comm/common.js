@@ -117,6 +117,11 @@ if(!common.board) {
      * @param  totPage		전체페이지 번호
      */
     common.board.drawTablePaing = function( div_id, callback, curPageNo, totRec/*totPage*/, recPerPage/*input_page_size*/) {
+
+        console.log("curPageNo = "+ curPageNo);
+        console.log("totRec = "+ totRec);
+        console.log("recPerPage = "+ recPerPage);
+
         var page_size = 10; //표시할 페이지 수
         var totPage = Math.ceil(totRec/recPerPage);
         var currentPage  = (curPageNo)?curPageNo:1;
@@ -127,6 +132,11 @@ if(!common.board) {
         var firstPage     = currentBlock*page_size-page_size+1;
         var lastPage      = currentBlock*page_size;
 
+        console.log("-----------------------");
+        console.log("lastBlock = "+ lastBlock);
+        console.log("currentBlock = "+ currentBlock);
+        console.log("firstPage = "+ firstPage);
+        console.log("lastPage = "+ lastPage);
 
         $("#"+div_id).children().remove();
         $("#"+div_id).prev(".combo_wrap").show();
@@ -231,7 +241,7 @@ if(!common.board) {
             }
         });
         $("#"+div_id).find(".pag_num a").click(function(){
-
+            
             if($(this).hasClass("on")==true){ return false;}
 
             currentPage = $(this).html();
@@ -330,4 +340,33 @@ function smartClosePop(callbackFn , data){
             //_popList[_popList.length-1].iframeTouch();
         }
     }
+}
+
+
+/**
+ * input text 마지막 글자에 focus 맞추기 함수
+ * @param elem      Selector
+ * */
+function setCaretAtEnd(elem) {
+    var elemLen = elem.val().length;
+    if(elemLen == 0){
+        elem.focus();
+        return;
+    }
+    // For IE Only
+    if (document.selection) {
+        // Set focus
+        elem.focus();
+        // Use IE Ranges
+        var oSel = document.selection.createRange();
+        // Reset position to 0 & then set at end
+        oSel.moveStart('character', -elemLen);
+        oSel.moveStart('character', elemLen);
+        oSel.moveEnd('character', 0);
+        oSel.select();
+    }
+    else if (document.selection == undefined || elem.selectionStart || elem.selectionStart == '0') {
+        // Firefox/Chrome
+        elem.focus().val(elem.val());
+    } // if
 }

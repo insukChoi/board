@@ -34,8 +34,8 @@
 
                 <!-- 버튼영역 -->
                 <div class="btn_wrap">
-                    <a href="#none" class="btn_sty" id="toList"><span>목록</span></a>
-                    <a href="#none" class="btn_sty" id="registerPost"><span>게시하기</span></a>
+                    <a href="#none" class="btn_sty" id="btn_toList"><span>목록</span></a>
+                    <a href="#none" class="btn_sty" id="btn_registerPost"><span>게시하기</span></a>
                 </div>
                 <!-- //버튼영역 -->
 
