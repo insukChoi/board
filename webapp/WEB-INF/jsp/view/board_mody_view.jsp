@@ -88,6 +88,65 @@
                     </table>
                 </div>
                 <!-- //파일첨부 -->
+
+                <!-- 댓글 -->
+                <div class="n_h_style_reply" id="commtCnt">
+                    <h4>댓글 0개</h4>
+                </div>
+                <div class="n_reply_writebox" id="commtBox">
+                    <textarea id="commtCntn" rows="5" cols="3"></textarea>
+                    <div class="btnwrap">
+                        <a class="btn_write" id="commtReg">작성하기</a>
+                    </div>
+                </div>
+                <div class="n_reply_box" id="replyList">
+
+                    <div class="reply_li">
+                        <dl name="commtDl">
+                            <dt>
+                                <a class="info_close"><strong>최인석</strong></a>
+                                <span class="date">2017-05-18 15:26:23</span>
+                                <div class="r_btn_box">
+                                    <span>
+                                        <a name="commtMod" href="#none">
+                                            <img alt="수정" src="/img/btn_icowrite.png">
+                                        </a>
+                                    </span>
+                                    <span>
+                                        <a name="commtDel" href="#none">
+                                            <img alt="삭제" src="/img/btn_icodel.png">
+                                        </a>
+                                    </span>
+                                </div>
+                            </dt>
+                            <dd style="-ms-word-break: break-all !important;" name="commt">댓글이 달리나요? ..</dd>
+                        </dl>
+                    </div>
+
+                    <div class="reply_li">
+                        <dl name="commtDl">
+                            <dt>
+                                <a class="info_close"><strong>최인석</strong></a>
+                                <span class="date">2017-05-18 15:27:32</span>
+                                <div class="r_btn_box">
+                                        <span>
+                                            <a name="commtMod" href="#none">
+                                                <img alt="수정" src="/img/btn_icowrite.png">
+                                            </a>
+                                        </span>
+                                        <span>
+                                            <a name="commtDel" href="#none">
+                                                <img alt="삭제" src="/img/btn_icodel.png">
+                                            </a>
+                                        </span>
+                                </div>
+                            </dt>
+                            <dd style="-ms-word-break: break-all !important;" name="commt">아직요 >.< </dd>
+                        </dl>
+                    </div>
+
+                </div>
+                <!-- //댓글 -->
             </div>
         </div>
 
