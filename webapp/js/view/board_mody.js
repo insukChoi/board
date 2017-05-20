@@ -23,10 +23,7 @@ new (Board.extend({
 
         // '삭제' 버튼 클릭시
         this.addEvent('#btn_deletePost', 'click', function(){
-            var boardSubmit = new common.board.BoardSubmit();
-            boardSubmit.setUrl("/deletePost.do");
-            boardSubmit.addParam("BOARD_NO",  $("#BOARD_NO"	).val());
-            boardSubmit.submit();
+            open_smartPop({href: "/confirm_del_pop.do", width: 420, height: 220, scrolling : false , target : window, frm:$("#frm")});
         });
         
         // '쓰기' 버튼 클릭시
@@ -82,4 +79,14 @@ new (Board.extend({
  */
 board_mody.whoPosted = function () {
     open_smartPop({href: "/detail_pop.do", width: 420, height: 654, scrolling : false , target : window, frm:$("#frm")});
+};
+
+/*
+ * 게시글 삭제
+ */
+board_mody.deleteAct = function () {
+    var boardSubmit = new common.board.BoardSubmit();
+    boardSubmit.setUrl("/deletePost.do");
+    boardSubmit.addParam("BOARD_NO",  $("#BOARD_NO"	).val());
+    boardSubmit.submit();
 };

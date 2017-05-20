@@ -89,6 +89,24 @@ body.lnb_bg{background:url(../img/body_lnb_bg.gif) repeat-y;}
 .pop_wrap h2.txt18{color:#333;font-size:18px;margin-bottom:10px;}
 
 
+/* 경고 */
+.caution_box{width:100%;color:#666;text-align:center !important;vertical-align:middle;padding:26px 0 38px 0;}
+.caution_box > span{display:inline-block;vertical-align:top !important;}
+.caution_box > span.caution_box_thumb{width:40px;*width:44px;height:40px;background-color:#fff;background-repeat:no-repeat;background-position:0 2px;}
+.caution_box > span.caution_box_thumb.icon1{background-image:url(../img/caution_icon1.png);}
+.caution_box > span.caution_box_thumb.icon2{background-image:url(../img/caution_icon2.png);}
+.caution_box > span.caution_box_thumb.icon3{background-image:url(../img/caution_icon3.png);}
+.caution_box > span.caution_box_thumb.icon4{background-image:url(../img/caution_icon4.png);}
+.caution_box > span.caution_box_txt{text-align:left;line-height:18px;}
+.caution_box > span.caution_box_txt.txt1{padding:9px 0 5px;}/* 1줄 */
+.caution_box > span.caution_box_txt.txt2{padding:1px 0 5px;}/* 2줄 이상 */
+.caution_box > span.caution_box_txt em{display:inline-block;padding:5px 0 2px;font-size:11px;color:#888;font-style:normal;}
+
+
+/* align */
+.t_center, .tac{text-align:center !important;}
+.t_right, .tar{text-align:right !important;}
+.t_left, .tal{text-align:left !important;}
 
 /* (추가)(TK)20160531 */
 .membinfo_wrap{padding:15px;border:1px solid #d7d7d7;}
@@ -125,9 +143,15 @@ body.lnb_bg{background:url(../img/body_lnb_bg.gif) repeat-y;}
 .info_box4 th div:first-child{line-height:19px;padding:2px 0 0;color:#666;}
 .info_box4 td div:first-child{line-height:19px;padding:2px 0 0;color:#666;}
 
+
 /*공통*/
 .btn_style1, .btn_style1_b, .btn_style1_g, .btn_style2, .btn_style2_b, .btn_style3, .btn_style3_b, .btn_style3_p, .btn_style3_g, .btn_style4, .btn_style4_b, .btn_realtime, .btn_style5, .btn_style5_b{cursor:pointer;display:inline-block;vertical-align:middle;text-align:center;}/* (수정)20160615 */
 .btn_style1 span, .btn_style1_b span, .btn_style1_g span, .btn_style2 span, .btn_style2_b span, .btn_style3 span, .btn_style3_b span, .btn_style3_p span, .btn_style3_g span, .btn_style4 span, .btn_style4_b span, .btn_realtime span, .btn_style5 span, .btn_style5_b span{cursor:pointer;display:inline-block;vertical-align:middle;text-align:center;}/* (수정)20160615 */
+
+/* btn_style1_b */
+.btn_style1_b{cursor:pointer;height:27px;padding:0 2px 0 0;background-image:url(../img/btn_style1_b.gif);background-repeat:no-repeat;background-position:100% 0;}
+.btn_style1_b span{min-width:30px;line-height:normal;height:19px;padding:7px 7px 1px 9px;margin:0;font-weight:bold;color:#fff;background-image:url(../img/btn_style1_b.gif);background-repeat:no-repeat;background-position:0 0;}/* (PARK)20161130 */
+.btn_style1_b span.normal{font-weight:normal;color:#fff;}
 
 /* btn_style1 */
 .btn_style1{height:27px;padding:0 2px 0 0;background-image:url(../img/btn_style1.gif);background-repeat:no-repeat;background-position:100% 0;}

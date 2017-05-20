@@ -12,8 +12,8 @@
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
         <property name="url" value="jdbc:oracle:thin:@antop.org:21521:orcl" />
-        <property name="username" value="board" />
-        <property name="password" value="11$#" />
+        <property name="username" value="cis1725" />
+        <property name="password" value="17@%" />
     </bean>
 
 

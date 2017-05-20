@@ -23,4 +23,11 @@ public class PopupController {
         return "/pop/detail_board_pop";
     }
 
+    @RequestMapping("/confirm_del_pop.do")
+    public String confirm_del_pop() throws Exception
+    {
+        logger.info("confirm delete pop ....");
+        return "/pop/confirm_delete_pop";
+    }
+
 }
