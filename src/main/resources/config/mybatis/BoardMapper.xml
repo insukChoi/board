@@ -18,19 +18,26 @@
 
 
     <select id="getBoards" parameterType="hashMap" resultMap="BoardResultMap">
-        SELECT * FROM (
+        SELECT
+            T1.rnum,
+            T1.NUM,
+            T1.USER_ID,
+            T1.TITLE,
+            T1.CONTENT,
+            TO_CHAR(T1.REGDATE, 'YYYY-MM-DD HH24:MI:SS') as REGDATE,
+            T1.VIEWCNT
+        FROM (
             SELECT
-                ROWNUM rnum,
-                NUM,
-                USER_ID,
-                TITLE,
-                CONTENT,
-                TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') as REGDATE,
-                VIEWCNT
-            FROM BOARD
-            ORDER BY NUM DESC
-        ) t
-        WHERE 1=1
+               ROWNUM AS rnum,
+               t.*
+            FROM (
+              SELECT
+                  b.*
+              FROM BOARD b
+              ORDER BY num DESC
+            ) t
+        ) T1
+        WHERE  1=1
         <if test="PAGE_NO != null and PAGE_SZ != null">
             AND rnum BETWEEN #{PAGE_NO}  and #{PAGE_SZ}
         </if>
