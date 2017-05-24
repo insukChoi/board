@@ -56,6 +56,10 @@ body.lnb_bg{background:url(../img/body_lnb_bg.gif) repeat-y;}
 *:first-child+html .content{ position:static;}
 .content_wrap{position:relative;padding:23px 25px 60px 25px;min-height:650px;}
 
+/* 상단기능버튼 */
+.editbtn_top_box{padding:10px 0;text-align:right;}
+
+
 /* 팝업Layout */
 .Pop_wrap{position:relative;padding:20px 30px 0 30px;}
 .Pop_wrap .Pop_header{height:30px;border-bottom:2px solid #000;position:relative;}
@@ -244,6 +248,14 @@ body.lnb_bg{background:url(../img/body_lnb_bg.gif) repeat-y;}
 /* 타이틀 영역 */
 .tit_wrap {position:relative;height:33px;margin-bottom:10px;border-bottom:1px solid #bbbec1;}
 .tit_wrap h1 {font-size:18px;line-height:22px;font-weight:bold;color:#333;}
+.tit_wrap .left h1{letter-spacing:-1px;height:18px;line-height:18px;padding:4px 0 0 16px;background:url(/img/bul_03.gif) no-repeat 0 8px;font-size:18px;color:#333;}
+.editbtn_top_box .right{position:absolute;top:0;right:0;}
+.editbtn_top_box .input_box{float:left;}
+.editbtn_top_box .input_box input[type=text]{}
+
+/* 타이틀/탭 상단 인풋 */
+.input_box{background:url(/img/bg_topsearch.gif) no-repeat;}
+.input_box input[type=text]{display:inline-block;margin:0 10px 0 5px;border:none;min-width:160px;}
 
 /* 버튼 영역 */
 .btn_wrap {position:relative;height:37px;}

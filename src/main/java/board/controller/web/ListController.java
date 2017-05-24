@@ -29,20 +29,21 @@ public class ListController {
 
     @RequestMapping("/list.do")
     public ModelAndView list(
-            CommandMap commandMap,
-            @CookieValue(value="PAGE_SIZE", defaultValue="15")String cookie) throws Exception
+            @RequestParam(value = "PAGE_NO", required = false) Object tmpPageNo,
+            @RequestParam(value = "PAGE_SZ", required = false) Object tmpPageSz,
+            @CookieValue(value="PAGE_SIZE", defaultValue="15") String cookie) throws Exception
     {
         logger.info("index ....");
 
         // 페이징 처리
-        Object tmpPageNo = commandMap.get("PAGE_NO");
-        Object tmpPageSz = commandMap.get("PAGE_SZ");
         Object pageNo = tmpPageNo;
         Object pageSz = tmpPageSz;
         if(pageNo != null && pageSz != null) {
             tmpPageSz = Integer.parseInt((String)pageNo) * Integer.parseInt((String)pageSz);
             tmpPageNo = 1 + ((Integer.parseInt((String)pageNo) - 1) * Integer.parseInt((String)pageSz));
         }
+
+        CommandMap commandMap = new CommandMap();
         commandMap.put("PAGE_NO" , tmpPageNo == null ? "1"    : tmpPageNo);
         commandMap.put("PAGE_SZ" , tmpPageSz == null ? cookie : tmpPageSz);
 

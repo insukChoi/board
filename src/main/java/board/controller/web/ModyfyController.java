@@ -37,13 +37,19 @@ public class ModyfyController {
 
     @RequestMapping("/modify.do")
     public ModelAndView modify(
-            CommandMap commandMap,
+            @RequestParam("BOARD_NO") String boardNo,
+            @RequestParam("TITLE") String title,
+            @RequestParam("CONTENT") String content,
             RedirectAttributes redirectAttributes) throws Exception
     {
         logger.info("modify ....");
 
-        ModelAndView result = new ModelAndView("redirect:/list.do");
-        commandMap.put("NUM",commandMap.get("BOARD_NO"));
+        ModelAndView result = new ModelAndView("redirect:/modyPosting.do?BOARD_NO="+boardNo);
+
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("NUM", boardNo);
+        commandMap.put("TITLE", title);
+        commandMap.put("CONTENT", content);
         boardDaoService.updateBoard(commandMap.getMap());
 
         redirectAttributes.addFlashAttribute("PROCESS_CODE","U");

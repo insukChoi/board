@@ -5,19 +5,8 @@ new (Board.extend({
     onload:function() {
         _this = this;
 
-        switch ($("#PROCESS_CODE").val()) {
-            case "C" :
-                common.board.success("정상적으로 등록되었습니다.");
-                break;
-            case "U" :
-                common.board.success("성공적으로 수정되었습니다.");
-                break;
-            case "D" :
-                common.board.success("삭제 완료 되었습니다.");
-                break;
-            default  :
-                break;
-        }
+        // Callback alert 창
+        common.board.callbackAlert($("#PROCESS_CODE").val());
 
         // init 함수
         board_list.init();
@@ -34,6 +23,15 @@ new (Board.extend({
             board_list.toModyPostView($(this).attr("boardNum"));
         });
 
+        /***************************************************************************************************************
+         * ***********************************************  Button Control *********************************************
+         ****************************************************************************************************************/
+        // 조회버튼 클릭시
+        this.addEvent('#btn_search', 'click', function(){
+
+            
+        });
+
 
     }
 }))();
@@ -43,14 +41,15 @@ new (Board.extend({
  */
 board_list.init = function(){
 
-    // 페이징 처리
-    var input;
-    if (!input) input = {};
-
     // 페이지 사이즈 쿠키값 셋팅
     if($.cookie("PAGE_SIZE")){
         $("#PAGE_SZ").find("span").text($.cookie("PAGE_SIZE"));
     }
+
+    // 페이징 처리
+    var input;
+    if (!input) input = {};
+
     // 페이지 넘버 셋팅
     if($("#PAGE_NO").val()){
         input["PAGE_NO"] = $("#PAGE_NO").val();
@@ -67,7 +66,7 @@ board_list.fillTable = function(input){
     if (!input) input = {};
     if (common.board.isNull(input["PAGE_NO"])) input["PAGE_NO"] = "1";
 
-    var boardSubmit = new common.board.BoardSubmit();
+    var boardSubmit = new common.board.BoardSubmitUsingGet();
     boardSubmit.setUrl("/list.do");
     boardSubmit.addParam("PAGE_NO", input["PAGE_NO"]);
     boardSubmit.addParam("PAGE_SZ", $("#PAGE_SZ").text());
@@ -80,7 +79,7 @@ board_list.toModyPostView = function (boardNo) {
     $("#BOARD_NO"	).val(	boardNo		);
 
     // 메인 화면으로 이동
-    var boardSubmit = new common.board.BoardSubmit();
+    var boardSubmit = new common.board.BoardSubmitUsingGet();
     boardSubmit.setUrl("/modyPosting.do");
     boardSubmit.addParam("BOARD_NO",  $("#BOARD_NO"	).val());
     boardSubmit.submit();

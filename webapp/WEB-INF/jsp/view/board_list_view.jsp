@@ -32,9 +32,27 @@
             <div class="content_wrap">
                 <!-- 타이틀 영역 -->
                 <div class="tit_wrap">
-                    <h1>게시판</h1>
+                    <div class="left">
+                        <h1>게시판</h1>
+                    </div>
                 </div>
                 <!-- //타이틀 영역 -->
+
+                <div class="editbtn_top_box" style="height: 30px; position: relative;">
+                    <div style="left: 0px; top: 20px; display: block; position:absolute;">
+                        <span>
+                            <strong>전체 게시글</strong> : <strong>${COUNT} 개</strong>
+                        </span>
+                    </div>
+                    <div class="right" style="top:15px; position: absolute;">
+                        <div class="input_box">
+                            <input type="text" id="searchText">
+                            <a href="#none" id="btn_search">
+                                <img alt="조회" src="/img/btn_topsearch.gif">
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 테이블 영역 -->
                 <div class="table_layout2">

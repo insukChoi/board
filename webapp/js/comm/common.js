@@ -5,8 +5,6 @@ var contentId = location.search.split("=")[1];
 
 if(!common.board) {
     common.board = {};
-
-
     /*
      * Null 체크 함수
      */
@@ -19,9 +17,9 @@ if(!common.board) {
         if (chkStr == null) return true;
         if (chkStr.toString().length == 0 ) return true;
         return false;
-    }
+    };
     /*
-     * 공통 Form submit 함수
+     * 공통 Form submit 함수 (Post 방식)
      */
     common.board.BoardSubmit = function(opt_formId) {
         this.formId = common.board.isNull(opt_formId) == true ? "commonForm" : opt_formId;
@@ -43,7 +41,31 @@ if(!common.board) {
             frm.method = "post";
             frm.submit();
         };
-    }
+    };
+    /*
+     * 공통 Form submit 함수 (Get 방식)
+     */
+    common.board.BoardSubmitUsingGet = function(opt_formId) {
+        this.formId = common.board.isNull(opt_formId) == true ? "commonForm" : opt_formId;
+        this.url = "";
+
+        if(this.formId == "commonForm"){
+            $("#commonForm")[0].reset();
+        }
+        this.setUrl = function setUrl(url){
+            this.url = url;
+        };
+        this.addParam = function addParam(key, value){
+            $("#"+this.formId).append($("<input type='hidden' name='"+key+"' id='"+key+"' value='"+value+"' >"));
+        };
+
+        this.submit = function submit(){
+            var frm = $("#"+this.formId)[0];
+            frm.action = this.url;
+            frm.method = "get";
+            frm.submit();
+        };
+    };
     /*
      * jQuery Toast Message
      */
@@ -75,7 +97,6 @@ if(!common.board) {
 
         $.unblockUI();
     };
-
     common.board.info = function(obj, msg){
         if(typeof(parent.toastr) != "undefined") {
             parent.toastr.info(common.board.getFullMsg(obj, msg));
@@ -85,7 +106,6 @@ if(!common.board) {
         }
         $.unblockUI();
     };
-
     common.board.warning = function(obj, msg){
         if(typeof(parent.toastr) != "undefined") {
             parent.toastr.warning(common.board.getFullMsg(obj, msg));
@@ -96,7 +116,6 @@ if(!common.board) {
 
         $.unblockUI();
     };
-
     common.board.success = function(obj, msg){
         if(typeof(parent.toastr) != "undefined") {
             parent.toastr.success(common.board.getFullMsg(obj, msg));
@@ -107,8 +126,43 @@ if(!common.board) {
 
         $.unblockUI();
     };
-
-
+    /*
+     * Callback alert 함수
+     */
+    common.board.callbackAlert = function (code) {
+        switch ($("#PROCESS_CODE").val()) {
+            case "C" :
+                common.board.success("정상적으로 등록되었습니다.");
+                break;
+            case "U" :
+                common.board.success("성공적으로 수정되었습니다.");
+                break;
+            case "D" :
+                common.board.success("삭제 완료 되었습니다.");
+                break;
+            default  :
+                break;
+        }
+    };
+    /*
+     * ajax 함수 [Data type = form]
+     */
+    common.board.ajax = function(dataType, targetUrl, submitData, callback){
+        $.ajax({
+            dataType: dataType,
+            url: targetUrl,
+            type : "post",
+            cache: false,
+            data : submitData.serializeArray(),
+            success: function(response){
+                callback(response);
+            },
+            error: function (msg) {
+                //alert("XML Data에 오류가 발생되었습니다.");
+            }
+        });
+    };
+    
     /**
      * 페이징처리
      * @param  div_id		페이징 표시할 요소 id
@@ -117,11 +171,6 @@ if(!common.board) {
      * @param  totPage		전체페이지 번호
      */
     common.board.drawTablePaing = function( div_id, callback, curPageNo, totRec/*totPage*/, recPerPage/*input_page_size*/) {
-
-        console.log("curPageNo = "+ curPageNo);
-        console.log("totRec = "+ totRec);
-        console.log("recPerPage = "+ recPerPage);
-
         var page_size = 10; //표시할 페이지 수
         var totPage = Math.ceil(totRec/recPerPage);
         var currentPage  = (curPageNo)?curPageNo:1;
@@ -132,22 +181,14 @@ if(!common.board) {
         var firstPage     = currentBlock*page_size-page_size+1;
         var lastPage      = currentBlock*page_size;
 
-        console.log("-----------------------");
-        console.log("lastBlock = "+ lastBlock);
-        console.log("currentBlock = "+ currentBlock);
-        console.log("firstPage = "+ firstPage);
-        console.log("lastPage = "+ lastPage);
-
         $("#"+div_id).children().remove();
         $("#"+div_id).prev(".combo_wrap").show();
         if(totPage > 0){
-
             var firstHtml = "<a id='paging_first' href='javascript:' class='btn_pag_cntr first'><span class='blind'>first</span></a>";
             var prevHtml  = "<a id='paging_pre' href='javascript:' class='btn_pag_cntr prev'><span class='blind'>previous</span></a>";
             var nextHtml  = "<a id='paging_next' href='javascript:' class='btn_pag_cntr next'><span class='blind'>next</span></a>";
             var lastHtml  = "<a id='paging_last' href='javascript:' class='btn_pag_cntr last'><span class='blind'>last</span></a>";
             var pageHtml  = "<span class='pag_num'>";
-            var countNum=0;
 
             for(var i = firstPage; i <= lastPage && i <= totPage;  i++){
                 if(currentPage == i){
@@ -167,27 +208,21 @@ if(!common.board) {
             if(currentPage != 1){
                 $("#paging_first").addClass("on");
             }
-
             if(currentPage != totPage){
                 $("#paging_last").addClass("on");
             }
-
             if(currentBlock != 1){
                 $("#paging_pre"  ).addClass("on");
             }
-
             if(currentBlock != lastBlock){
                 $("#paging_next").addClass("on");
             }
-
         }else{
             $("#"+div_id).prev(".combo_wrap").hide();
         }
 
-
         var input = {};
         $("#"+div_id).find("#paging_first").click(function(){
-
             if($(this).hasClass("on")==false){ return false;}
 
             if($.isFunction(callback)){
@@ -197,13 +232,10 @@ if(!common.board) {
             }
         });
         $("#"+div_id).find("#paging_pre").click(function(){
-
             if($(this).hasClass("on")==false){ return false;}
 
             currentBlock--;
             currentPage = currentBlock*page_size-page_size+1;
-
-            //currentPage--;
 
             if(currentPage < 0) currentPage = 1;
             if($.isFunction(callback)){
@@ -213,12 +245,9 @@ if(!common.board) {
             }
         });
         $("#"+div_id).find("#paging_next").click(function(){
-
             if($(this).hasClass("on")==false){ return false;}
             currentBlock++;
             currentPage = currentBlock*page_size-page_size+1;
-
-            //currentPage++;
 
             if(currentPage > totPage){
                 currentPage = totPage;
@@ -231,7 +260,6 @@ if(!common.board) {
             }
         });
         $("#"+div_id).find("#paging_last").click(function(){
-
             if($(this).hasClass("on")==false){ return false;}
 
             if($.isFunction(callback)){
@@ -241,7 +269,6 @@ if(!common.board) {
             }
         });
         $("#"+div_id).find(".pag_num a").click(function(){
-            
             if($(this).hasClass("on")==true){ return false;}
 
             currentPage = $(this).html();
@@ -252,13 +279,11 @@ if(!common.board) {
                 callback(input);
             }
         });
-
         $("#"+div_id).prev(".combo_wrap").find(".combo_style").click(function(e){
             $(this).find("ul").toggle();
             //Keeps the rest of the handlers from being executed
             e.stopImmediatePropagation();
         });
-
         $("#"+div_id).prev(".combo_wrap").find("ul li").click(function(e){
             $("#"+div_id).parents(".paging_wrap").find(".combo_style ul").hide();
             if($(".paging_wrap").find(".btn_combo_down span").text() != $(this).text()){
@@ -295,6 +320,14 @@ function open_smartPop(opt){
         smartOpenPop( opt );
     }
 }
+function smartOpenPop(option){
+    var isIE  = !$.support.opacity && !$.support.style; // IE7 & IE8
+    var isIE6 = isIE && !window.XMLHttpRequest; // IE6
+    var element = document.createElement("div");
+    $(element).attr({id: "colorbox", 'class': isIE ? "smartPop" + (isIE6 ? 'IE6' : 'IE') : ''}).hide();
+    var smartPop = $(element).smartPop(option);
+    _popList.push(smartPop);
+}
 
 /**
  * smartPopUp Close 함수
@@ -307,21 +340,9 @@ function close_smartPop(callbackFn, data){
         doc = window.parent;
         doc.smartClosePop(callbackFn , data);
     }catch(e){
-
-        //window.close();
         smartClosePop(callbackFn , data); //smartClosePop
     }
 }
-
-function smartOpenPop(option){
-    var isIE  = !$.support.opacity && !$.support.style; // IE7 & IE8
-    var isIE6 = isIE && !window.XMLHttpRequest; // IE6
-    var element = document.createElement("div");
-    $(element).attr({id: "colorbox", 'class': isIE ? "smartPop" + (isIE6 ? 'IE6' : 'IE') : ''}).hide();
-    var smartPop = $(element).smartPop(option);
-    _popList.push(smartPop);
-}
-
 function smartClosePop(callbackFn , data){
     if(_popList.length > 0){
         var targetDocument = _popList[_popList.length-1].getSettings().target;
@@ -335,13 +356,11 @@ function smartClosePop(callbackFn , data){
                 }
             }
         }
-
         if(_popList.length > 0){
             //_popList[_popList.length-1].iframeTouch();
         }
     }
 }
-
 
 /**
  * input text 마지막 글자에 focus 맞추기 함수
