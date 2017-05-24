@@ -40,11 +40,11 @@ public class BoardDaoService implements BoardDao {
     }
 
     @Override
-    public int countPosting() {
+    public int countPosting(Map<String, Object> map) {
         int count = 0;
 
         BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
-        count = boardMapper.countPosting();
+        count = boardMapper.countPosting(map);
 
         return count;
     }

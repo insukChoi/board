@@ -31,6 +31,7 @@ public class ListController {
     public ModelAndView list(
             @RequestParam(value = "PAGE_NO", required = false) Object tmpPageNo,
             @RequestParam(value = "PAGE_SZ", required = false) Object tmpPageSz,
+            @RequestParam(value = "SEARCH_TEXT", required = false) String serachText,
             @CookieValue(value="PAGE_SIZE", defaultValue="15") String cookie) throws Exception
     {
         logger.info("index ....");
@@ -46,17 +47,19 @@ public class ListController {
         CommandMap commandMap = new CommandMap();
         commandMap.put("PAGE_NO" , tmpPageNo == null ? "1"    : tmpPageNo);
         commandMap.put("PAGE_SZ" , tmpPageSz == null ? cookie : tmpPageSz);
+        commandMap.put("SEARCH_TEXT" , serachText);
 
         // 게시글 목록 조회
         List<Board> boardList = boardDaoService.getBoards(commandMap.getMap());
 
         // 총 카운트 조회
-        int count = boardDaoService.countPosting();
+        int count = boardDaoService.countPosting(commandMap.getMap());
 
         ModelAndView result = new ModelAndView();
         result.addObject("RESULT", boardList);
         result.addObject("COUNT", count);
         result.addObject("PAGE_NO", pageNo);
+        result.addObject("SEARCH_TEXT", serachText);
         result.setViewName("view/board_list_view");
         return result;
     }

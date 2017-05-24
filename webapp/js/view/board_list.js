@@ -28,8 +28,21 @@ new (Board.extend({
          ****************************************************************************************************************/
         // 조회버튼 클릭시
         this.addEvent('#btn_search', 'click', function(){
+            board_list.fillTable();
+        });
+        
+        // 검색창 엔터시
+        this.addEvent('#searchText', 'keypress', function(e){
+            if (e.keyCode == 13){
+                board_list.fillTable();
+            }
+        });
 
-            
+        // 뒤로가기 방지
+        $(document).on("keydown", function (e) {
+            if (e.which === 8 && !$(e.target).is("input, textarea")) {
+                e.preventDefault();
+            }
         });
 
 
@@ -62,14 +75,14 @@ board_list.init = function(){
  * 목록 조회
  */
 board_list.fillTable = function(input){
-
     if (!input) input = {};
     if (common.board.isNull(input["PAGE_NO"])) input["PAGE_NO"] = "1";
 
     var boardSubmit = new common.board.BoardSubmitUsingGet();
     boardSubmit.setUrl("/list.do");
-    boardSubmit.addParam("PAGE_NO", input["PAGE_NO"]);
-    boardSubmit.addParam("PAGE_SZ", $("#PAGE_SZ").text());
+    boardSubmit.addParam("PAGE_NO"      , input["PAGE_NO"]       );
+    boardSubmit.addParam("PAGE_SZ"      , $("#PAGE_SZ").text()   );
+    boardSubmit.addParam("SEARCH_TEXT"  , $("#searchText").val() );
     boardSubmit.submit();
 };
 /*

@@ -38,6 +38,13 @@
             ) t
         ) T1
         WHERE  1=1
+        <if test="SEARCH_TEXT != null">
+            AND (
+              TITLE LIKE '%' ||  #{SEARCH_TEXT} || '%'
+              OR CONTENT LIKE '%' ||  #{SEARCH_TEXT} || '%'
+              OR USER_ID LIKE '%' ||  #{SEARCH_TEXT} || '%'
+            )
+        </if>
         <if test="PAGE_NO != null and PAGE_SZ != null">
             AND rnum BETWEEN #{PAGE_NO}  and #{PAGE_SZ}
         </if>
@@ -57,10 +64,18 @@
 		  AND NUM = #{NUM}
     </select>
 
-    <select id="countPosting"  resultType="int">
+    <select id="countPosting" parameterType="hashMap" resultType="int">
         SELECT
           COUNT(0) as CNT
         FROM BOARD
+        WHERE  1=1
+        <if test="SEARCH_TEXT != null">
+            AND (
+            TITLE LIKE '%' ||  #{SEARCH_TEXT} || '%'
+            OR CONTENT LIKE '%' ||  #{SEARCH_TEXT} || '%'
+            OR USER_ID LIKE '%' ||  #{SEARCH_TEXT} || '%'
+            )
+        </if>
     </select>
 
     <insert id="insertBoard" parameterType="hashMap" >

@@ -14,7 +14,7 @@ public interface BoardDao {
 
     ArrayList<Board> getBoards(Map<String, Object> map);
 
-    int countPosting();
+    int countPosting(Map<String, Object> map);
 
     void insertBoard(Map<String, Object> map);
 

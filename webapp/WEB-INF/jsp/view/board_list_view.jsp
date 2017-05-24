@@ -46,7 +46,7 @@
                     </div>
                     <div class="right" style="top:15px; position: absolute;">
                         <div class="input_box">
-                            <input type="text" id="searchText">
+                            <input type="text" id="searchText" value="${SEARCH_TEXT}">
                             <a href="#none" id="btn_search">
                                 <img alt="조회" src="/img/btn_topsearch.gif">
                             </a>
