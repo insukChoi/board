@@ -98,7 +98,7 @@ new (Board.extend({
         // 댓글 수정 완료
         $( document ).on("click", "a[name=commtModReg]", function(e){
             $("#TEMP_REPLY_NO").val($(this).closest(".reply_li").attr("replyNum"));
-            $("#TEMP_REPLY_CONT").val($(this).closest(".reply_li").find("div[name='commtModDiv']").find("textarea").html());
+            $("#TEMP_REPLY_CONT").val($(this).closest(".reply_li").find("div[name='commtModDiv']").find("textarea").val());
             common.board.ajax("json", "/modifyReply.do", $("#frm"), board_mody.doneModifyReply);
         });
 
