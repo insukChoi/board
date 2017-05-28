@@ -621,7 +621,7 @@ var validation_imeMode       = ["onlyEng"];
 	        			}
 	                },
 	                "info"     : "",
-	                "alertText": "WAI00073"
+	                "alertText": "뭐하시려구요? 안됩니다"
                 },
                 "onlyEng": { 
                 	"func": function(field, rules, i, options){
