@@ -19,7 +19,7 @@
 	<repositories>
 		<repository>
 			<id>oracle</id>
-			<url>http://nexus.antop.org/content/repositories/thirdparty/</url>
+			<url>https://nexus.antop.org/content/repositories/thirdparty/</url>
 		</repository>
 	</repositories>
 

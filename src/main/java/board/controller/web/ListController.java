@@ -27,7 +27,7 @@ public class ListController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
-    @RequestMapping("/list.do")
+    @RequestMapping("/list")
     public ModelAndView list(
             @RequestParam(value = "PAGE_NO", required = false) Object tmpPageNo,
             @RequestParam(value = "PAGE_SZ", required = false) Object tmpPageSz,
@@ -64,14 +64,14 @@ public class ListController {
         return result;
     }
 
-    @RequestMapping("/newPosting.do")
+    @RequestMapping("/newPosting")
     public String newPosting(Model model) throws Exception
     {
         logger.info("newPosting ....");
         return "view/board_write_view";
     }
 
-    @RequestMapping("/modyPosting.do")
+    @RequestMapping("/modyPosting")
     public ModelAndView modyPosting(@RequestParam(value="BOARD_NO", defaultValue = "") String boardNo) throws Exception
     {
         logger.info("modyPosting ...." + boardNo);

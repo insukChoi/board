@@ -2,18 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <util:properties id="db" location="classpath:config/properties/database.properties"></util:properties>
 
     <bean id="dataSource" class="net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy">
         <constructor-arg ref="dataSourceSpied" />
     </bean>
 
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@antop.org:21521:orcl" />
-        <property name="username" value="cis1725" />
-        <property name="password" value="17@%" />
+        <property name="driverClassName" value="#{db['jdbc.driver']}" />
+        <property name="url" value="#{db['jdbc.url']}" />
+        <property name="username" value="#{db['jdbc.username']}" />
+        <property name="password" value="#{db['jdbc.password']}" />
     </bean>
 
 

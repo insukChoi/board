@@ -25,7 +25,7 @@ public class ReplyController {
     protected Logger logger = Logger.getLogger(this.getClass());
 
     @ResponseBody
-    @RequestMapping("/replyList.do")
+    @RequestMapping("/replyList")
     public  List<Reply> replyList(
             @RequestParam(value = "BOARD_NO") String boardNo,
             HttpServletResponse response) throws Exception
@@ -38,7 +38,7 @@ public class ReplyController {
     }
 
     @ResponseBody
-    @RequestMapping("/addReply.do")
+    @RequestMapping("/addReply")
     public void addReply(
             @RequestParam(value = "BOARD_NO") String boardNo,
             @RequestParam(value = "whoPosted",required = false) String userId,
@@ -54,7 +54,7 @@ public class ReplyController {
     }
 
     @ResponseBody
-    @RequestMapping("/removeReply.do")
+    @RequestMapping("/removeReply")
     public void removeReply(
             @RequestParam(value = "TEMP_REPLY_NO") String replyNum,
             HttpServletResponse response) throws Exception
@@ -65,7 +65,7 @@ public class ReplyController {
     }
 
     @ResponseBody
-    @RequestMapping("/modifyReply.do")
+    @RequestMapping("/modifyReply")
     public void modifyReply(
             @RequestParam(value = "TEMP_REPLY_NO") String replyNum,
             @RequestParam(value = "TEMP_REPLY_CONT") String replyContent,

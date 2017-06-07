@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@include file="/WEB-INF/jsp/inc/inc_board_header.jsp"%>
+    <%@include file="../inc/inc_board_header.jsp"%>
     <script type="text/javascript" src="/js/view/board_mody.js?<%=verSion%>"></script>
 </head>
 
@@ -18,7 +18,7 @@
 
 <!-- wrap -->
 <div class="wrap">
-    <%@include file="/WEB-INF/jsp/inc/inc_board_left.jsp"%>
+    <%@include file="../inc/inc_board_left.jsp"%>
     <form id="frm" method="post">
         <input type="hidden" id="BOARD_NO" 		  name="BOARD_NO" 	     value="${BOARD.num}"	    />
         <input type="hidden" id="BOARD_TITLE" 	  name="BOARD_TITLE"     value="${BOARD.title}"	    />
@@ -115,6 +115,6 @@
     </form>
 </div>
 <!-- //wrap -->
-<%@include file="/WEB-INF/jsp/inc/inc_board_footer.jsp"%>
+<%@include file="../inc/inc_board_footer.jsp"%>
 </body>
 </html>

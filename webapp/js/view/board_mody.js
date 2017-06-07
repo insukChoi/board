@@ -42,7 +42,7 @@ new (Board.extend({
         });
 
         // '수정' 버튼 클릭시
-        this.addEvent('#btn_modyfyPost', 'click', function(){+
+        this.addEvent('#btn_modyfyPost', 'click', function(){
             $("#TITL_DIV").html('<input type="text" style="width:100%;" id="TITLE" name="TITLE" class="validate[custom[maxbyte,notNull,htmlTag]]" Length="500" maxlength="500">');
             $("#CONT_DIV").html('<textarea style="border:0;width:100%;height:148px;" id="CONTENT" name="CONTENT"></textarea>')
 

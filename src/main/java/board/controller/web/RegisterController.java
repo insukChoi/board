@@ -25,7 +25,7 @@ public class RegisterController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
-    @RequestMapping("/register.do")
+    @RequestMapping("/register")
     public ModelAndView register(CommandMap commandMap, RedirectAttributes redirectAttributes) throws Exception
     {
         logger.info("register ....");

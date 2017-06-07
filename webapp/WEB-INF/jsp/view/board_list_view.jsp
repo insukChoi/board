@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko" xml:lang="ko">
 <head>
-    <%@include file="/WEB-INF/jsp/inc/inc_board_header.jsp"%>
+    <%@include file="../inc/inc_board_header.jsp"%>
     <script type="text/javascript" src="/js/view/board_list.js?<%=verSion%>"></script>
 </head>
 
@@ -18,7 +18,7 @@
 
 <!-- wrap -->
 <div class="wrap">
-    <%@include file="/WEB-INF/jsp/inc/inc_board_left.jsp"%>
+    <%@include file="../inc/inc_board_left.jsp"%>
     <form id="frm" method="post">
         <input type="hidden" id="BOARD_NO" 		name="BOARD_NO" 		                        />   <!-- Temp 게시글 시퀀스 번호    -->
         <input type="hidden" id="PROCESS_CODE" 	name="PROCESS_CODE" value="${PROCESS_CODE}"		/>   <!-- C: 등록, U: 수정, D: 삭제  -->
@@ -129,6 +129,6 @@
 
 </div>
 <!-- //wrap -->
-<%@include file="/WEB-INF/jsp/inc/inc_board_footer.jsp"%>
+<%@include file="../inc/inc_board_footer.jsp"%>
 </body>
 </html>

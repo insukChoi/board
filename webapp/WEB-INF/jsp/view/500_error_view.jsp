@@ -35,7 +35,7 @@
 
 <body>
 <div class="page_none_wrap">
-    <h1><img src="/img/board.png" alt="BOARD" /></h1>
+    <h1><img src="${contextPath}/img/board.png" alt="BOARD" /></h1>
     <div class="page_none_cont">
         <div class="inner">
             <div class="txt_page_none">

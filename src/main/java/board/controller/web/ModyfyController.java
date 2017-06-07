@@ -21,7 +21,7 @@ public class ModyfyController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
-    @RequestMapping("/deletePost.do")
+    @RequestMapping("/deletePost")
     public ModelAndView deletePost(
             @RequestParam(value="BOARD_NO", defaultValue = "") String boardNo,
             RedirectAttributes redirectAttributes) throws Exception
@@ -35,7 +35,7 @@ public class ModyfyController {
         return result;
     }
 
-    @RequestMapping("/modify.do")
+    @RequestMapping("/modify")
     public ModelAndView modify(
             @RequestParam("BOARD_NO") String boardNo,
             @RequestParam("TITLE") String title,
